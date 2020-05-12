@@ -50,6 +50,7 @@ public class Program {
 
         System.out.println();
         System.out.println("Questão 3 e 4 Respondida");
+
         sc.close();
     }
 }
