@@ -60,6 +60,7 @@ public class Program {
         System.out.println("Conta 2");
         System.out.println(conta2);
 
+        System.out.println("Questão 2 Respondida");
         sc.close();
     }
 }
