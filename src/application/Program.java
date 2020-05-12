@@ -9,58 +9,47 @@ public class Program {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        Conta conta1;
+        Conta conta1, conta2;
         boolean sit ;
 
-        String nome = "Matheus Carvalho";
-        Integer numero = 252525;
-        String agencia = "000510-8";
-        Double saldo = 500.50;
-        String dataAbertura = "12/05/2020";
-
-        conta1 = new Conta(nome, numero, agencia, saldo, dataAbertura);
-        System.out.println();
+        conta1 = new Conta("Matheus Carvalho", 252525, "000510-8", 0.0, "12/05/2020");
         System.out.println(conta1);
 
-        System.out.println("Testando sacar R$ 100,00 e o toString");
-        sit = conta1.sacar(100.0);
-        System.out.println(sit);
-
-        System.out.println();
-        System.out.println(conta1);
-
-        System.out.println("Testando depositar R$ 50.0");
-        sit = conta1.depositar(50.0);
-        System.out.println(sit);
-
-        System.out.println();
-        System.out.println(conta1);
-
-
-        System.out.println("Criando conta 2");
-
-        String nome2 = "Douglas Gomes";
-        Integer numero2 = 123456;
-        String agencia2 = "000524-9";
-        Double saldo2 = 100.0;
-        String dataAbertura2 = "24/04/2010";
-
-        Conta conta2 = new Conta(nome2, numero2, agencia2, saldo2, dataAbertura2);
-        System.out.println();
+        conta2 = new Conta("Douglas Gomes", 123456, "000524-9", 0.0, "24/04/2010");
         System.out.println(conta2);
 
-        System.out.println("Testando transferencia de R$ 20.0 da conta 1 para a conta 2");
+        System.out.println("Deposito de 500.00 na conta1");
+        sit = conta1.depositar(500.00);
+        System.out.println("Deposito conta1 : " + sit);
+        System.out.println("Saldo conta1 : " + conta1.getSaldo());
 
-        sit = conta1.transferir(conta2, 20.0);
-        System.out.println(sit);
+        System.out.println("------------------");
 
-        System.out.println("Dados atualizados:");
-        System.out.println("Conta 1");
-        System.out.println(conta1);
-        System.out.println("Conta 2");
-        System.out.println(conta2);
+        System.out.println("Deposito de 500.00 na conta2");
+        sit = conta2.depositar(1000.00);
+        System.out.println("Deposito conta2 : " + sit);
+        System.out.println("Saldo conta2 : " + conta2.getSaldo());
 
-        System.out.println("Questão 2 Respondida");
+        System.out.println("------------------");
+
+        System.out.println("Saque conta1 de 250");
+        sit = conta1.sacar(250.0);
+        System.out.println("Saque efetuado: " + sit);
+        System.out.println("Saldo conta1 : " + conta1.getSaldo());
+
+        System.out.println("------------------");
+
+        System.out.println("Transferencia conta2 de R$ 100 para conta1");
+        sit = conta2.transferir(conta1 , 100.0);
+        System.out.println("Transferencia efetuada: " + sit);
+
+        System.out.println("------------------");
+
+        System.out.println("Saldo conta1 após receber transferencia : " + conta1.getSaldo());
+        System.out.println("Saldo conta2 após trasnferencia : " + conta2.getSaldo());
+
+        System.out.println();
+        System.out.println("Questão 3 e 4 Respondida");
         sc.close();
     }
 }
