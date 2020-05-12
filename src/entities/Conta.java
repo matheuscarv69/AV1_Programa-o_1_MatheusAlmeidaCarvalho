@@ -55,20 +55,38 @@ public class Conta {
         this.dataAbertura = dataAbertura;
     }
 
-    public void sacar(Double valor) {
+    public boolean sacar(Double valor) {
+        if (valor < 0) return false;
+
+        if (valor > this.saldo) return false;
+
         this.saldo -= valor;
+
+        return true;
     }
 
-    public void depositar(Double valor) {
-        this.saldo += valor;
+    public boolean depositar(Double valor) {
+        if (valor != 0) {
+            this.saldo += valor;
+            return true;
+        }
+        return false;
+
     }
 
-    public String transferir(Conta conta, Double valor) {
+    public boolean transferir(Conta conta, Double valor) {
+        if (valor < 0) return false;
+
+        if (valor > this.saldo) return false;
+
+        if (conta == null) return false;
+
         this.saldo -= valor;
         conta.depositar(valor);
 
-        return "Transferência feita";
+        return true;
     }
+
 
     @Override
     public String toString() {
@@ -79,9 +97,9 @@ public class Conta {
                 "Numero: " + numero +
                 "\n" +
                 "Agencia: " + agencia +
-                "\n"+
+                "\n" +
                 "Saldo: " + saldo +
-                "\n"+
+                "\n" +
                 "Data de abertura: " + dataAbertura +
                 "\n"
                 ;

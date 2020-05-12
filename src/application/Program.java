@@ -10,6 +10,7 @@ public class Program {
         Scanner sc = new Scanner(System.in);
 
         Conta conta1;
+        boolean sit ;
 
         String nome = "Matheus Carvalho";
         Integer numero = 252525;
@@ -22,14 +23,19 @@ public class Program {
         System.out.println(conta1);
 
         System.out.println("Testando sacar R$ 100,00 e o toString");
-        conta1.sacar(100.0);
+        sit = conta1.sacar(100.0);
+        System.out.println(sit);
+
         System.out.println();
         System.out.println(conta1);
 
         System.out.println("Testando depositar R$ 50.0");
-        conta1.depositar(50.0);
+        sit = conta1.depositar(50.0);
+        System.out.println(sit);
+
         System.out.println();
         System.out.println(conta1);
+
 
         System.out.println("Criando conta 2");
 
@@ -44,7 +50,10 @@ public class Program {
         System.out.println(conta2);
 
         System.out.println("Testando transferencia de R$ 20.0 da conta 1 para a conta 2");
-        conta1.transferir(conta2, 20.0);
+
+        sit = conta1.transferir(conta2, 20.0);
+        System.out.println(sit);
+
         System.out.println("Dados atualizados:");
         System.out.println("Conta 1");
         System.out.println(conta1);
