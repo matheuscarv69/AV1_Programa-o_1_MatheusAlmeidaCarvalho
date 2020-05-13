@@ -2,22 +2,18 @@ package entities;
 
 import interfaceTribut.Tributavel;
 
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class ContaCorrente extends Conta implements Tributavel {
     private Double taxaAdministracao;
     private Double limite;
 
-    public ContaCorrente(String titular, Integer numero, String agencia, Double saldo, String dataAbertura, Double taxaAdministracao, Double limite) {
-        super(titular, numero, agencia, saldo, dataAbertura);
+    public ContaCorrente(Integer numero, String agencia, Double saldo, Date abertura, Pessoa titular, Double taxaAdministracao, Double limite) {
+        super(numero, agencia, saldo, abertura, titular);
         this.taxaAdministracao = taxaAdministracao;
         this.limite = limite;
-    }
-
-    public Double getTaxaAdministracao() {
-        return taxaAdministracao;
-    }
-
-    public Double getLimite() {
-        return limite;
     }
 
     @Override
@@ -43,7 +39,7 @@ public class ContaCorrente extends Conta implements Tributavel {
     }
 
     @Override
-    public boolean transferir(Conta conta, Double valor) {
+    public boolean tranferirDinheiro(Double valor, Conta conta) {
         if (valor < 0 || valor > saldo || this == conta) {
             return false;
         }
@@ -52,27 +48,21 @@ public class ContaCorrente extends Conta implements Tributavel {
 
         return true;
     }
+
     @Override
-    public Double getValorImposto(){
+    public Double getValorImposto() {
         return this.saldo *= 0.01;
     }
 
     @Override
     public String toString() {
-        return "Conta:" + numero +
-                "\n" +
-                "Titular: " + titular +
-                "\n" +
-                "Agencia: " + agencia +
-                "\n" +
-                "Saldo: " + saldo +
-                "\n" +
-                "Data de abertura: " + dataAbertura +
-                "\n" +
-                "taxaAdministracao: " + taxaAdministracao +
-                "\n" +
-                "limite:" + limite +
-                "\n";
+        return "Conta Corrente Nº " + numero + "\n" +
+                "Agência " + agencia + "\n" +
+                "Saldo R$ " + new DecimalFormat("#.00").format(saldo) + "\n" +
+                "Abertura " + new SimpleDateFormat("dd/MM/yyyy 'às' HH:mm").format(dataAbertura) + "\n" +
+                "Titular " + titular.getNome() + "\n" +
+                "Taxa de Administração " + taxaAdministracao + "\n" +
+                "Limite " + limite + "\n\n";
     }
 
 }

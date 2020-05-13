@@ -1,40 +1,37 @@
 package entities;
 
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public abstract class Conta {
-    protected String titular;
+
     protected Integer numero;
     protected String agencia;
     protected Double saldo;
-    protected String dataAbertura;
+    protected Date dataAbertura;
+    protected Pessoa titular;
 
-    public Conta(String titular, Integer numero, String agencia, Double saldo, String dataAbertura) {
-        this.titular = titular;
+    public Conta(Integer numero, String agencia, Double saldo, Date dataAbertura, Pessoa titular) {
         this.numero = numero;
         this.agencia = agencia;
         this.saldo = saldo;
         this.dataAbertura = dataAbertura;
+        this.titular = titular;
     }
 
     public abstract boolean sacar(Double valor);
 
     public abstract boolean depositar(Double valor);
 
-    public abstract boolean transferir(Conta conta, Double valor);
+    public abstract boolean tranferirDinheiro(Double valor, Conta conta);
 
     @Override
     public String toString() {
-        return "Conta:" +
-                "\n" +
-                "Titular: " + titular +
-                "\n" +
-                "Numero: " + numero +
-                "\n" +
-                "Agencia: " + agencia +
-                "\n" +
-                "Saldo: " + saldo +
-                "\n" +
-                "Data de abertura: " + dataAbertura +
-                "\n"
-                ;
+        return "Conta Nº " + numero + "\n" +
+                "Agência " + agencia + "\n" +
+                "Saldo R$ " + new DecimalFormat("#.00").format(saldo) + "\n" +
+                "Abertura " + new SimpleDateFormat("dd/MM/yyyy 'às' HH:mm").format(dataAbertura) + "\n" +
+                "Titular " + titular.getNome() + "\n";
     }
 }
