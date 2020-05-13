@@ -12,7 +12,7 @@ public class Program {
 
         ContaCorrente contaCorrente;
         ContaPoupanca contaPoupanca;
-        boolean sit ;
+
 
 
 

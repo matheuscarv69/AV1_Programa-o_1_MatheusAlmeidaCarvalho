@@ -1,6 +1,8 @@
 package entities;
 
-public class ContaCorrente extends Conta {
+import interfaceTribut.Tributavel;
+
+public class ContaCorrente extends Conta implements Tributavel {
     private Double taxaAdministracao;
     private Double limite;
 
@@ -14,34 +16,45 @@ public class ContaCorrente extends Conta {
         return taxaAdministracao;
     }
 
-    public void setTaxaAdministracao(Double taxaAdministracao) {
-        this.taxaAdministracao = taxaAdministracao;
-    }
-
     public Double getLimite() {
         return limite;
     }
 
-    public void setLimite(Double limite) {
-        this.limite = limite;
-    }
-
     @Override
     public boolean sacar(Double valor) {
+        if (valor < 0 || valor > this.saldo) {
+            return false;
+        }
 
-        return false;
+        saldo -= valor;
+
+        return true;
     }
 
     @Override
     public boolean depositar(Double valor) {
+        if (valor < 0) {
+            return false;
+        }
 
-        return false;
+        saldo += valor;
+
+        return true;
     }
 
     @Override
     public boolean transferir(Conta conta, Double valor) {
+        if (valor < 0 || valor > saldo || this == conta) {
+            return false;
+        }
+        saldo -= valor;
+        conta.depositar(valor);
 
-        return false;
+        return true;
+    }
+    @Override
+    public Double getValorImposto(){
+        return this.saldo *= 0.01;
     }
 
     @Override
@@ -55,7 +68,7 @@ public class ContaCorrente extends Conta {
                 "Saldo: " + saldo +
                 "\n" +
                 "Data de abertura: " + dataAbertura +
-                "\n"+
+                "\n" +
                 "taxaAdministracao: " + taxaAdministracao +
                 "\n" +
                 "limite:" + limite +
