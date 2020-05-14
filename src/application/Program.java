@@ -47,6 +47,16 @@ public class Program {
                     Conta contaSelecionada = selecionarConta(contas);
                     depositarDinheiro(contaSelecionada);
                     break;
+                case 5:
+                    Conta contaSelect = selecionarConta(contas);
+                    sacarDinheiro(contaSelect);
+                    break;
+                //case 6:
+                   // Conta contaSelec = selecionarConta(contas);
+
+
+                    //transferirDinheiro(contaSelec, contas);
+                  //  break;
                 case 7:
                     process = false;
                     break;
@@ -156,4 +166,40 @@ public class Program {
             }
         } while (error != false);
     }
+
+    public static void sacarDinheiro(Conta conta){
+        boolean error = false;
+        do{
+            Double valor = inputValue(Double.class, "Sacar Dinheiro", "Digite o valor de saque.");
+            boolean sucesso = conta.sacar(valor);
+
+            if(sucesso){
+                JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!", "Sacar Dinheiro.", 3);
+                error = false;
+            }else{
+                JOptionPane.showMessageDialog(null, "Quantidade inválida.", "Alerta", 2);
+                error = true;
+            }
+
+        }while(error != false);
+    }
+
+    public static void transferirDinheiro(Conta conta, List<? super Conta> contas){
+        boolean error = false;
+        do{
+            Double valor = inputValue(Double.class, "Transferir Dinheiro", "Digite o valor de transferencia.");
+            boolean sucesso = conta.tranferirDinheiro(valor, selecionarConta(contas));
+
+            if(sucesso){
+                JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!", "Transferir Dinheiro.", 3);
+                error = false;
+            }else{
+                JOptionPane.showMessageDialog(null, "Quantidade inválida.", "Alerta", 2);
+                error = true;
+            }
+
+        }while(error != false);
+
+    }
+
 }
