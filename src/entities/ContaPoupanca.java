@@ -38,7 +38,7 @@ public class ContaPoupanca extends Conta {
 
     @Override
     public boolean tranferirDinheiro(Double valor, Conta conta) {
-        if (valor < 0 || valor > saldo || this == conta) {
+        if (valor <= 0 || valor > saldo || this == conta) {
             return false;
         }
         saldo -= valor;

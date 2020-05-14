@@ -22,6 +22,9 @@ public class Program {
 //        contas.add(new ContaCorrente(1, "1", 1.0, new Date(), new Pessoa("1"), 0.01, 1.0));
 //        contas.add(new ContaPoupanca(2, "2", 2.0, new Date(), new Pessoa("2"), 2.0, 2));
 //        contas.add(new ContaCorrente(3, "1", 1.0, new Date(), new Pessoa("1"), 0.01, 1.0));
+        contas.add(new ContaCorrente(1, "1", 1.0, new Date(), new Pessoa("Douglas Matos Gomes"), 0.01, 1.0));
+        contas.add(new ContaPoupanca(2, "2", 2.0, new Date(), new Pessoa("Matheus Carvalho de Almeida"), 2.0, 2));
+        contas.add(new ContaCorrente(3, "1", 1.0, new Date(), new Pessoa("Samuel Araujo Delgado"), 0.01, 1.0));
 
         String menuPrincipal = "Escolha uma opção abaixo: \n" +
                 "1 - Adicionar uma conta corrente. \n" +
@@ -205,6 +208,7 @@ public class Program {
         boolean error = false;
         do {
             Double valor = inputValue(Double.class, "Transferir Dinheiro", "Digite o valor de transferencia.");
+            System.out.println("valor a ser transferido " + valor);
             boolean sucesso = conta.tranferirDinheiro(valor, selecionarConta(contas, true));
 
             if (sucesso) {
