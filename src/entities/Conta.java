@@ -3,7 +3,7 @@ package entities;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+// classe abstrata de conta
 public abstract class Conta {
 
     protected Integer numero;
@@ -19,7 +19,7 @@ public abstract class Conta {
         this.dataAbertura = dataAbertura;
         this.titular = titular;
     }
-
+    // metodos abstratos
     public abstract boolean sacar(Double valor);
 
     public abstract boolean depositar(Double valor);
